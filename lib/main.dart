@@ -1,5 +1,8 @@
 
+import 'package:doctor_app/presentation/screens/home_screen.dart';
+import 'package:doctor_app/presentation/screens/login_screen.dart';
 import 'package:doctor_app/presentation/screens/signup_screen.dart';
+import 'package:doctor_app/presentation/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 
@@ -19,7 +22,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'doctor_app_rami',
-      home: SignupScreen() ,
+      //home: SplashScreen() ,
+      home: HomeScreen() ,
       debugShowCheckedModeBanner: false,
 
     );
