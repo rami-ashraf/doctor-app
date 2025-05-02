@@ -1,15 +1,15 @@
-class SigninStates {}
+class LoginStates {}
 
-class SigninInitialStates extends SigninStates {}
+class LoginInitialStates extends LoginStates {}
 
-class SigninLoadingState extends SigninStates {}
+class LoginLoadingState extends LoginStates {}
 
-class SigninSucessState extends SigninStates {}
+class LoginSucessState extends LoginStates {}
 
-class SigninErrorState extends SigninStates {
+class LoginErrorState extends LoginStates {
 
   final String error;
-  SigninErrorState(this.error);
+  LoginErrorState(this.error);
 
 }
 

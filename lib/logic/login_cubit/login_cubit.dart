@@ -2,38 +2,52 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 
 import 'package:meta/meta.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../core/api_links.dart';
 import 'login_state.dart';
 
-class SigninCubit extends Cubit<SigninStates> {
-  SigninCubit() : super(SigninInitialStates());
+class LoginCubit extends Cubit<LoginStates> {
+  LoginCubit() : super(LoginInitialStates());
 
   Dio request = Dio();
 
-  Future<void> Signin({
+
+  Future<void> Login({
+
     required String email,
-    required String name,
-    required String gender,
-    required String phone,
+
     required String pass,
-    required String confirmationPass,
+
   }) async {
-    emit(SigninLoadingState());
+    emit(LoginLoadingState());
     try {
-      await request.post(
-        "https://vcare.integration25.com/api/auth/register",
+      final response = await request.post(
+        ApiLinks.loginUrl,
         data: {
-          "name": name,
+
           "email": email,
-          "phone": phone,
-          "gender": gender,
+
           "password": pass,
-          "password_confirmation": confirmationPass,
+
         },
       );
-      emit(SigninSucessState());
+
+      //1- get token
+      //2- save token in shared preferences
+
+
+      if (response.statusCode == 200) {
+        //get token
+        final userToken = response.data['data']['token'];
+
+        //save token in shared preferences
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('user_token', userToken);
+        emit(LoginSucessState());
+      }
     } catch (e) {
-      emit(SigninErrorState(e.toString()));
+      emit(LoginErrorState(e.toString()));
     }
   }
 }

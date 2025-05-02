@@ -1,3 +1,4 @@
+import 'package:doctor_app/logic/login_cubit/login_cubit.dart';
 import 'package:doctor_app/logic/signup_cubit/signup_state.dart';
 import 'package:doctor_app/presentation/screens/forgotPassword_screen.dart';
 import 'package:doctor_app/presentation/screens/signup_screen.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../logic/login_cubit/login_state.dart';
 import '../../logic/signup_cubit/signup_cubit.dart';
 import 'home_screen.dart';
 
@@ -35,12 +37,12 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SignUpCubit(),
-      child: BlocConsumer<SignUpCubit,SignUpStates>(
+      create: (context) =>LoginCubit(),
+      child: BlocConsumer<LoginCubit,LoginStates>(
         listener: (BuildContext context,  state) {
-          if(state is SignUpErrorState){
+          if(state is LoginErrorState){
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error)));
-          }else if(state is SignUpSucessState){
+          }else if(state is LoginSucessState){
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(" Login Success")));
             Navigator.push(context,MaterialPageRoute(builder: (context)=>HomeScreen()));
           }
@@ -200,13 +202,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     // Sign  Button
                     InkWell(
                       onTap: () {
-                        context.read<SignUpCubit>().signUp(
+                        context.read<LoginCubit>().Login(
                             email: emailcontroller.text,
-                            name: namecontroller.text,
-                            gender: gendercontroller.text,
-                            phone: phonecontroller.text,
-                            pass: passwordcontroller.text,
-                            confirmationPass: confirmpasswordcontroller.text);
+                            pass: passwordcontroller.text);
+
 
                       },
                       child: Container(

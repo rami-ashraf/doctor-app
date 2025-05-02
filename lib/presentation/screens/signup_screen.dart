@@ -37,7 +37,7 @@ class _SignupScreenState extends State<SignupScreen> {
           if(state is SignUpErrorState){
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error)));
           }else if(state is SignUpSucessState){
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(" Login Success")));
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(" SingUp Success")));
             Navigator.push(context,MaterialPageRoute(builder: (context)=>HomeScreen()));
           }
         },
@@ -239,6 +239,41 @@ class _SignupScreenState extends State<SignupScreen> {
                       filled: true,
                       fillColor: Color.fromRGBO(253, 253, 255, 1),
                       hintText: "Your Phone Number",
+                      hintStyle: TextStyle(
+                        color: Color.fromRGBO(194, 194, 194, 1),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide: BorderSide.none,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide: BorderSide(
+                          color: Color.fromRGBO(237, 237, 237, 1), // Border color when not focused
+                          width: 1.0,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide: BorderSide(
+                          color: Color.fromRGBO(237, 237, 237, 1), // Border color when focused
+                          width: 4.0,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(height: 20),
+                  // name
+                  TextFormField(
+                    controller: namecontroller,
+                    style: TextStyle(
+                      color: Colors.black, // Changed from white to black for better visibility
+                    ),
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color.fromRGBO(253, 253, 255, 1),
+                      hintText: "name",
                       hintStyle: TextStyle(
                         color: Color.fromRGBO(194, 194, 194, 1),
                       ),

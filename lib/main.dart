@@ -22,8 +22,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'doctor_app_rami',
-      //home: SplashScreen() ,
-      home: HomeScreen() ,
+      home: SplashScreen() ,
+      //home: HomeScreen() ,
       debugShowCheckedModeBanner: false,
 
     );

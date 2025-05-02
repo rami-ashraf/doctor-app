@@ -3,6 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:doctor_app/logic/signup_cubit/signup_state.dart';
 import 'package:meta/meta.dart';
 
+import '../../core/api_links.dart';
+
 class SignUpCubit extends Cubit<SignUpStates> {
   SignUpCubit() : super(SignUpInitialStates());
 
@@ -19,7 +21,7 @@ class SignUpCubit extends Cubit<SignUpStates> {
     emit(SignUpLoadingState());
     try {
       await request.post(
-        "https://vcare.integration25.com/api/auth/register",
+        ApiLinks.signUpUrl,
         data: {
           "name": name,
           "email": email,
